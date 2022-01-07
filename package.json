@@ -7,6 +7,7 @@
     "build": "cross-env UMI_ENV=dev umi build",
     "build:prod": "cross-env UMI_ENV=prod umi build",
     "serve": "serve ./dist",
+    "commit": "git add . && git-cz",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
@@ -35,11 +36,17 @@
     "@types/react-dom": "^17.0.0",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.5.20",
+    "commitizen": "^4.2.4",
     "cross-env": "^7.0.3",
-    "lint-staged": "^10.0.7",
+    "cz-customizable": "^6.3.0",
     "prettier": "^2.2.0",
     "serve": "^13.0.2",
     "typescript": "^4.1.2",
     "yorkie": "^2.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
   }
 }
