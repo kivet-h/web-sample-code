@@ -48,6 +48,8 @@ git push
 ## 项目介绍
 
 - 项目结构
+
+```bash
 ├── README.md                    // 项目介绍文档
 ├── config                // ====== 项目的配置目录
 │   ├── config.dev.ts            // 测试环境配置
@@ -70,6 +72,7 @@ git push
 ├── tsconfig.json
 ├── typings.d.ts
 └── yarn.lock
+```
 
 - 自动格式化
 
@@ -82,6 +85,7 @@ git push
 > 使用 `yarn commit` 命令即可，无需 `git add .` && `git commit -m '[type]: xxx'`
 
 - 代码规范
+
 这里的代码规范，包括代码的书写规范，项目模块的命名规范，代码的提交规范等等
 
 这里先占位，之后会单独写一篇相关的文档然后将文档链接放这里
