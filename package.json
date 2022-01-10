@@ -1,0 +1,56 @@
+{
+  "name": "umi-web-sample-code",
+  "description": "基于umi搭建的一个web项目",
+  "private": true,
+  "version": "0.0.1",
+  "license": "ISC",
+  "scripts": {
+    "start": "cross-env PORT=8000 umi dev",
+    "start:dev": "cross-env PORT=8001 UMI_ENV=dev umi dev",
+    "start:prod": "cross-env PORT=8002 UMI_ENV=prod umi dev",
+    "build": "cross-env UMI_ENV=dev umi build",
+    "build:prod": "cross-env UMI_ENV=prod umi build",
+    "serve": "serve ./dist",
+    "commit": "git add . && git-cz",
+    "postinstall": "umi generate tmp",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  },
+  "dependencies": {
+    "antd": "^4.18.2",
+    "dayjs": "^1.10.7",
+    "react": "17.x",
+    "react-dom": "17.x",
+    "umi": "^3.5.20"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@umijs/preset-react": "1.x",
+    "@umijs/test": "^3.5.20",
+    "commitizen": "^4.2.4",
+    "cross-env": "^7.0.3",
+    "cz-customizable": "^6.3.0",
+    "prettier": "^2.2.0",
+    "serve": "^13.0.2",
+    "typescript": "^4.1.2",
+    "yorkie": "^2.0.0"
+  }
+}
