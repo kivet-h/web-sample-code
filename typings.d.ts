@@ -9,4 +9,11 @@ declare module '*.svg' {
   export default url;
 }
 
+/**
+ * 全局变量
+ */
+// ? 环境
 declare const APP_ENV: string;
+
+// ? 基础PAI
+declare const API_BASE: string;

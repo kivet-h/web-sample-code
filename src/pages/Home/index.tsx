@@ -5,6 +5,7 @@
 import { useState } from 'react';
 import { Button, Input } from 'antd';
 import styles from './index.less';
+import { DruidLocalStorage } from '@/utils/storage';
 
 const IndexPage = (props: any) => {
   const [value, setValue] = useState<string>('');
@@ -16,9 +17,10 @@ const IndexPage = (props: any) => {
       <Button
         onClick={() => {
           console.log('== value ==', value);
+          DruidLocalStorage.set('name', value);
         }}
       >
-        跳转
+        存储
       </Button>
       <Button
         onClick={() => {
