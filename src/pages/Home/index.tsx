@@ -15,7 +15,7 @@ const IndexPage = (props: any) => {
       <Input value={value} onChange={(e) => setValue(e.target.value)} />
       <Button
         onClick={() => {
-          console.log('=== value ===', value);
+          console.log('== value ==', value);
         }}
       >
         跳转
