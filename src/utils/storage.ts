@@ -80,22 +80,29 @@ class SQ_Storage {
     const bucket = this._getBucket(key, options);
     const value = this._getDriver(options).getItem(key);
     if (bucket) {
-      if (value) {
-        return bucket.type === 'String' ? value : JSON.parse(value);
+      // ? 需兼容数字0的情况，不能直接 if(value){}
+      if (value != null) {
+        return bucket.type === 'String' ? value : JSON.parse(value); // ? 注意: 除了对象，JSON.parse('111') ==> 111
       }
+
+      // ? 如果 value 为 null，移除此 key 对应数据
       this._remove(key, options);
+
+      // ? 特殊情况，如果是数组，则返回空数组
       if (bucket.type === 'Array') {
         return [];
       }
       return null;
     }
+
+    // ? 如果此 key 对应的 bucket 没有值，直接移除此 key 对应数据，并直接返回 null
     this._remove(key, options);
     return null;
   };
 
   /**
    * 删除数据
-   * @param key
+   * @param {string | string[]} key 可以是单个 key 值，也可以是 key 的数组
    * @param options
    */
   remove = (key: string | string[], options?: IOptions) => {
@@ -110,7 +117,7 @@ class SQ_Storage {
   };
 
   /**
-   * 删除所有数据
+   * 移除缓存数据，默认移除所有缓存，包括 local 和 session，也可通过传入 options.driver 来设置移除哪一类
    * @param options
    */
   removeAll = (options?: IOptions) => {
@@ -143,12 +150,10 @@ class SQ_Storage {
    * @param options
    * @returns 若传入时有配置过，配置信息与默认配置合并，返回合并后的配置
    */
-  private _getOptions = (options?: IOptions) => {
-    if (options) {
-      return (Object as any).assign({}, this.defaults, options);
-    }
-    return this.defaults;
-  };
+  private _getOptions = (options?: IOptions) =>
+    options
+      ? (Object as any).assign({}, this.defaults, options)
+      : this.defaults;
 
   /**
    * 从配置中获取当前缓存类型
@@ -170,12 +175,40 @@ class SQ_Storage {
     );
   };
 
+  /**
+   * 获取key名称，拼接前缀名称+传入key名称
+   * @param key
+   * @param options
+   * @returns 传入了 options 的配置，且 options.prefix 设置了的，使用 options.prefix 进行拼接，否则使用默认前缀名称进行拼接
+   */
   private _getKey = (key: string, options?: IOptions) => {
-    return options
+    return options && options.prefix
       ? `${options.prefix}${key}`
       : `${this.defaults.prefix}${key}`;
   };
 
+  /**
+   * 移除指定 key 值缓存数据
+   * @param key
+   * @param options
+   */
+  private _remove = (key: string, options: any) => {
+    key = this._getKey(key, options);
+    this._removeBucket(key, options);
+    this._getDriver(options).removeItem(key);
+  };
+
+  /**
+   * 移除所有缓存数据
+   */
+  private _clear = () => {
+    drivers.LOCALSTORAGE.clear();
+    drivers.SESSIONSTORAGE.clear();
+  };
+
+  /**
+   * 以下是对所有保存的缓存数据进行一个数据类型的汇总储存，用于对当前不同类型的缓存数据进行处理
+   */
   private _bucket = (options?: any) => {
     let bucket: any;
     bucket = this._getDriver(options).getItem(options.bucket);
@@ -202,17 +235,6 @@ class SQ_Storage {
     const bucket = this._bucket(options);
     delete bucket[key];
     this._getDriver(options).setItem(options.bucket, JSON.stringify(bucket));
-  };
-
-  private _remove = (key: string, options: any) => {
-    key = this._getKey(key, options);
-    this._removeBucket(key, options);
-    this._getDriver(options).removeItem(key);
-  };
-
-  private _clear = () => {
-    drivers.LOCALSTORAGE.clear();
-    drivers.SESSIONSTORAGE.clear();
   };
 }
 
