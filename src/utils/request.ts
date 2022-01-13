@@ -1,17 +1,12 @@
 /*
- * @Description:
- * @Author: kivet
- * @Date: 2022-01-10 13:19:33
- * @LastEditTime: 2022-01-10 18:32:21
+ * @Description: 公共 request 拦截器
  */
 
-import { extend, OnionOptions } from 'umi-request';
+import { extend } from 'umi-request';
 import { message } from 'antd';
-// import queryString from 'querystring';
-import CommomHelper from '@/utils/commom';
-import { HxLocalStorage } from './storage';
-import { StorageEnum } from './enum';
-import { handleRedirect, download } from './util';
+import { DruidLocalStorage } from '@/utils/storage';
+import { StorageEnum } from '@/utils/enum';
+import { Helper } from '@/utils/helper';
 
 const queryString = require('querystring');
 
@@ -31,9 +26,9 @@ interface RequestParams {
   };
 }
 
-// ? 是否返回原始响应数据
+/** 是否返回原始响应数据 */
 let isShowOriginResponse = false;
-// ? 是否不显示任何错误信息
+/** 是否不显示任何错误信息 */
 let isSkipError = false;
 
 /**
@@ -89,8 +84,8 @@ request.interceptors.request.use(
 
     // 组装请求参数，移除空值
     const data = {
-      // ...CommomHelper.handleNullData(defaultParams),
-      ...CommomHelper.handleNullData(realData),
+      // ...Helper.handleNullData(defaultParams),
+      ...Helper.handleNullData(realData),
     };
 
     // 组装请求配置
@@ -98,7 +93,8 @@ request.interceptors.request.use(
       // ...tempOptions,
       data,
       headers: {
-        'x-druid-authentication': HxLocalStorage.get(StorageEnum.TOKEN) || '',
+        'x-druid-authentication':
+          DruidLocalStorage.get(StorageEnum.TOKEN) || '',
       },
     };
 
@@ -109,22 +105,6 @@ request.interceptors.request.use(
 
 // 全局响应拦截器，克隆响应对象做解析处理
 request.interceptors.response.use(async (originResponse, options) => {
-  const { responseType } = options;
-  const exportFileName = decodeURIComponent(
-    originResponse.headers.get('FileName') || '',
-  );
-  // 导出文件（在request时加参数 responseType:'bolb'）
-  if (responseType === 'blob') {
-    originResponse.blob().then((blob) => {
-      const downloadUrl = window.URL.createObjectURL(blob);
-      if (downloadUrl) {
-        download(downloadUrl, exportFileName);
-      } else {
-        console.error('下载路径不存在');
-      }
-    });
-  }
-
   const response = await originResponse.clone().json();
   const {
     data = '',
@@ -133,8 +113,10 @@ request.interceptors.response.use(async (originResponse, options) => {
     msg = '',
     message: msgTwo = '',
   } = response;
+
   if (errCode === '401') {
-    handleRedirect();
+    Helper.handleRedirect();
+    return;
   }
   console.log('response', response);
   if (!isSkipError) {
@@ -148,12 +130,14 @@ request.interceptors.response.use(async (originResponse, options) => {
   if (isShowOriginResponse) {
     return originResponse;
   }
+
   // 如果服务器返回的data字段为null，则返回空字符串，避免解构赋值默认值无法生效
-  if (data === null) {
+  if (data == null) {
     return '';
   }
+
   // 仅返回处理后的data数据（无code，msg，errCode字段）
-  return data ? CommomHelper.handleNullData(data) : '';
+  return data ? Helper.handleNullData(data) : '';
 });
 
 export default request;
