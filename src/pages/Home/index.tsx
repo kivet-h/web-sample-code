@@ -4,33 +4,30 @@
 
 import { FC, useEffect, useState } from 'react';
 import { Button, Input } from 'antd';
-import styles from './index.less';
 import { DruidLocalStorage } from '@/utils/storage';
 import {
   connect,
   Dispatch,
   IGlobalModelState,
   Loading,
-  IRouteComponentProps,
+  ConnectProps,
 } from 'umi';
+import styles from './index.less';
 
-interface IProps extends IRouteComponentProps {
+interface IProps extends ConnectProps {
   dispatch: Dispatch;
-  loading?: boolean;
   global: IGlobalModelState;
+  loading: boolean;
 }
 
 const IndexPage: FC<IProps> = (props) => {
-  const { dispatch, history } = props;
+  const { dispatch, history, global, loading = false } = props;
   const [value, setValue] = useState<string>('');
+  console.log('=ggg', loading, global.deviceList);
 
   useEffect(() => {
     dispatch({
       type: 'global/getDeviceList',
-      payload: {},
-      callback: (res) => {
-        console.log('===res', res);
-      },
     });
   }, []);
 
@@ -40,7 +37,7 @@ const IndexPage: FC<IProps> = (props) => {
       <Input value={value} onChange={(e) => setValue(e.target.value)} />
       <Button
         onClick={() => {
-          console.log('== value ==', value);
+          console.log('== value ===', value);
           DruidLocalStorage.set('token', value);
         }}
       >
@@ -97,15 +94,19 @@ const IndexPage: FC<IProps> = (props) => {
       >
         获取arr
       </Button>
+      <div>
+        {global.deviceList.map((item) => (
+          <div key={item.id}>{item.name}</div>
+        ))}
+      </div>
     </div>
   );
 };
 
-// export default IndexPage;
-
 export default connect(
   ({ global, loading }: { global: IGlobalModelState; loading: Loading }) => ({
     global,
-    loading: loading.effects['global/login'],
+    // loading: loading.effects['global/getDeviceList'],
+    loading: loading.models.global,
   }),
 )(IndexPage);

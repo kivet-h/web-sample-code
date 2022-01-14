@@ -1,4 +1,4 @@
-import { Effect, Reducer, history, Subscription } from 'umi';
+import { Effect, ImmerReducer, Subscription } from 'umi';
 import { getDeviceList } from '@/services/global';
 import { DruidLocalStorage } from '@/utils/storage';
 import { StorageEnum } from '@/utils/enum';
@@ -9,7 +9,7 @@ export interface IGlobalModelState {
   deviceList: any[];
 }
 
-export interface IGlobalModel {
+export interface IGlobalModelType {
   namespace: 'global';
   state: IGlobalModelState;
   effects: {
@@ -17,14 +17,14 @@ export interface IGlobalModel {
     getDeviceList: Effect;
   };
   reducers: {
-    updateState: Reducer<IGlobalModel>;
+    updateState: ImmerReducer<IGlobalModelType>;
   };
   subscriptions: {
     setup: Subscription;
   };
 }
 
-const GlobalModel: IGlobalModel = {
+const GlobalModel: IGlobalModelType = {
   namespace: 'global',
 
   state: {
@@ -33,8 +33,8 @@ const GlobalModel: IGlobalModel = {
   effects: {
     *getDeviceList({ payload, callback }, { call, put }) {
       const data = yield call(getDeviceList, payload) || [];
-      yield put(Helper.createAction('updateState')({ organDeptList: data }));
-      data.length && callback(data);
+      yield put(Helper.createAction('updateState')({ deviceList: data }));
+      callback && data.length && callback(data);
     },
   },
   reducers: {

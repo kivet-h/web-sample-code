@@ -13,11 +13,11 @@ const { Random } = Mock;
  */
 const getDeviceList = (req: any, res: any) => {
   const response = Mock.mock({
-    'data|5-30': [
+    'data|5-20': [
       {
         'id|+1': 1,
-        name: Random.cname(),
-        address: Random.region(),
+        name: () => Random.cname(),
+        address: () => Random.region(),
       },
     ],
   });

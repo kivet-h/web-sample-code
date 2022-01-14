@@ -100,7 +100,6 @@ request.interceptors.request.use(
       },
     };
 
-    console.log(url, options);
     return { url, options };
   },
 );
@@ -120,7 +119,7 @@ request.interceptors.response.use(async (originResponse, options) => {
     Helper.handleRedirect();
     return;
   }
-  console.log('response', response);
+  // console.log('response', response);
   if (!isSkipError) {
     if (code === '0' || code === '-1') {
       console.warn(`===接口响应失败===\nerrCode: ${errCode}\nmsg: ${msg}`);
