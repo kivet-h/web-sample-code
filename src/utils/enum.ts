@@ -1,5 +1,5 @@
 /*
- * @Description: 枚举
+ * @Description: 项目中所有公共使用的枚举都放这里
  */
 
 /**

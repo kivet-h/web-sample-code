@@ -7,7 +7,7 @@ import { DruidLocalStorage } from './storage';
 
 const Helper = {
   /**
-   * 处理请求参数，移除值为空、null, undefined的参数
+   * 移除传入值 data 中值为空、null, undefined的参数
    * @param data
    */
   handleNullData: (data: object | []) => {
@@ -21,7 +21,7 @@ const Helper = {
     );
   },
   /**
-   * 重定向
+   * 执行重定向操作
    */
   handleRedirect: () => {
     if (window.location.pathname !== '/login') {
@@ -36,7 +36,7 @@ const Helper = {
     }
   },
   /**
-   * models 更新 state
+   * 用于 models 层中更新 state
    * @param type reducers中的方法名
    * @returns
    */

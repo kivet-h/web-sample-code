@@ -13,6 +13,7 @@ import {
   ConnectProps,
 } from 'umi';
 import styles from './index.less';
+import _ from 'lodash';
 
 interface IProps extends ConnectProps {
   dispatch: Dispatch;
@@ -95,7 +96,7 @@ const IndexPage: FC<IProps> = (props) => {
         获取arr
       </Button>
       <div>
-        {global.deviceList.map((item) => (
+        {_.map(global.deviceList, (item: any) => (
           <div key={item.id}>{item.name}</div>
         ))}
       </div>
