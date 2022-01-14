@@ -24,6 +24,7 @@ interface RequestParams {
     skipError?: boolean; // ? 是否不显示任何错误信息
     [index: string]: any;
   };
+  headers?: any;
 }
 
 /** 是否返回原始响应数据 */
@@ -59,7 +60,7 @@ const request = extend({
  */
 request.interceptors.request.use(
   (tempUrl: string, tempOptions: RequestParams) => {
-    const { method = 'post', data: params = {} } = tempOptions;
+    const { method = 'post', data: params = {}, headers = {} } = tempOptions;
 
     const { showOriginData = false, skipError = false, ...realData } = params;
     isShowOriginResponse = showOriginData;
@@ -95,6 +96,7 @@ request.interceptors.request.use(
       headers: {
         'x-druid-authentication':
           DruidLocalStorage.get(StorageEnum.TOKEN) || '',
+        ...headers,
       },
     };
 

@@ -2,13 +2,37 @@
  * @Description: 首页
  */
 
-import { useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Button, Input } from 'antd';
 import styles from './index.less';
 import { DruidLocalStorage } from '@/utils/storage';
+import {
+  connect,
+  Dispatch,
+  IGlobalModelState,
+  Loading,
+  IRouteComponentProps,
+} from 'umi';
 
-const IndexPage = (props: any) => {
+interface IProps extends IRouteComponentProps {
+  dispatch: Dispatch;
+  loading?: boolean;
+  global: IGlobalModelState;
+}
+
+const IndexPage: FC<IProps> = (props) => {
+  const { dispatch, history } = props;
   const [value, setValue] = useState<string>('');
+
+  useEffect(() => {
+    dispatch({
+      type: 'global/getDeviceList',
+      payload: {},
+      callback: (res) => {
+        console.log('===res', res);
+      },
+    });
+  }, []);
 
   return (
     <div>
@@ -17,7 +41,7 @@ const IndexPage = (props: any) => {
       <Button
         onClick={() => {
           console.log('== value ==', value);
-          DruidLocalStorage.set('name', '');
+          DruidLocalStorage.set('token', value);
         }}
       >
         存储
@@ -47,7 +71,7 @@ const IndexPage = (props: any) => {
       </Button>
       <Button
         onClick={() => {
-          props.history.push('/login');
+          history.push('/login');
         }}
       >
         跳转Login
@@ -77,4 +101,11 @@ const IndexPage = (props: any) => {
   );
 };
 
-export default IndexPage;
+// export default IndexPage;
+
+export default connect(
+  ({ global, loading }: { global: IGlobalModelState; loading: Loading }) => ({
+    global,
+    loading: loading.effects['global/login'],
+  }),
+)(IndexPage);

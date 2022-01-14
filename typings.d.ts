@@ -17,3 +17,9 @@ declare const APP_ENV: string;
 
 // ? 基础PAI
 declare const API_BASE: string;
+
+/**
+ * npm 包
+ */
+
+declare module 'mockjs';

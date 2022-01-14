@@ -35,6 +35,14 @@ const Helper = {
       DruidLocalStorage.removeAll();
     }
   },
+  /**
+   * models 更新 state
+   * @param type reducers中的方法名
+   * @returns
+   */
+  createAction:
+    (type: string) =>
+    (payload = {}) => ({ type, payload }),
 };
 
 export { Helper };
