@@ -33,7 +33,7 @@ const IndexPage: FC<IProps> = (props) => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1 className={styles.title}>Page index === {APP_ENV}</h1>
       <Input value={value} onChange={(e) => setValue(e.target.value)} />
       <Button
