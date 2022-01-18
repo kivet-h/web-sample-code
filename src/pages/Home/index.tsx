@@ -4,7 +4,7 @@
 
 import { FC, useEffect, useState } from 'react';
 import { Button, Input } from 'antd';
-import { DruidLocalStorage } from '@/utils/storage';
+import _ from 'lodash';
 import {
   connect,
   Dispatch,
@@ -12,8 +12,8 @@ import {
   Loading,
   ConnectProps,
 } from 'umi';
+import { DruidLocalStorage } from '@/utils/storage';
 import styles from './index.less';
-import _ from 'lodash';
 
 interface IProps extends ConnectProps {
   dispatch: Dispatch;
