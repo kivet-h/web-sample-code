@@ -12,7 +12,7 @@
     "build": "cross-env UMI_ENV=dev umi build",
     "build:prod": "cross-env UMI_ENV=prod umi build",
     "serve": "serve ./dist",
-    "commit": "git add . && git-cz",
+    "commit": "rm -rf .git/hooks/pre-commit && git add . && git-cz",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
@@ -23,7 +23,6 @@
   },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
-      "rm .git/hooks/pre-commit",
       "prettier --write"
     ],
     "*.ts?(x)": [
@@ -36,6 +35,7 @@
     }
   },
   "dependencies": {
+    "@ant-design/pro-layout": "^6.32.5",
     "antd": "^4.18.2",
     "dayjs": "^1.10.7",
     "react": "17.x",

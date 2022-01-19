@@ -52,7 +52,7 @@ const GlobalModel: IGlobalModelType = {
           pathname !== '/login' &&
           !DruidLocalStorage.get(StorageEnum.TOKEN)
         ) {
-          Helper.handleRedirect();
+          // Helper.handleRedirect(); // ? 没有登录功能，暂时屏蔽不重定向
         }
       });
     },

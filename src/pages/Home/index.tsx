@@ -24,7 +24,6 @@ interface IProps extends ConnectProps {
 const IndexPage: FC<IProps> = (props) => {
   const { dispatch, history, global, loading = false } = props;
   const [value, setValue] = useState<string>('');
-  console.log('=ggg', loading, global.deviceList);
 
   useEffect(() => {
     dispatch({
