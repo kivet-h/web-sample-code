@@ -2,9 +2,7 @@
  * @Description: 路由配置文件
  */
 
-// import detailRoutes from '@/pages/DetailDemo/routes';
-
-const detailRoutes = require('../src/pages/DetailDemo/routes');
+const secondaryMenuRoute = require('../src/pages/SecondaryMenuDemo/routes');
 
 export interface RouteType {
   /** 页面 path */
@@ -43,25 +41,7 @@ const route: RouteType[] = [
     component: '@/pages/Home',
     icon: 'icon-a-2xhome',
   },
-  {
-    name: 'Demo',
-    path: '/demo',
-    icon: 'icon-a-2xset',
-    // hideInMenu: true,
-    routes: [
-      {
-        name: 'Demo one',
-        path: '/demo/one',
-        component: '@/pages/Demo/Demo1',
-      },
-      {
-        name: 'Demo two',
-        path: '/demo/two',
-        component: '@/pages/Demo/Demo2',
-      },
-    ],
-  },
-  detailRoutes,
+  secondaryMenuRoute,
 ];
 
 export default route;
