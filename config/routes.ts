@@ -20,12 +20,12 @@ export interface RouteType {
 }
 
 const route: RouteType[] = [
-  {
-    name: '登录',
-    path: '/login',
-    component: '@/pages/Login',
-    hideInMenu: true,
-  },
+  // {
+  //   name: '登录',
+  //   path: '/login',
+  //   component: '@/pages/Login',
+  //   hideInMenu: true,
+  // },
   {
     name: '首页',
     path: '/',

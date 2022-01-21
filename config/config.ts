@@ -18,4 +18,5 @@ export default defineConfig({
   dva: {
     hmr: true,
   },
+  fastRefresh: {}, // ? 快速刷新
 });
