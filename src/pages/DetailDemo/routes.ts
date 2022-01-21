@@ -8,25 +8,24 @@ const detailRoutes = [
   {
     path: `/${BASE_URL}`,
     name: '详情 Demo',
-    hideChildrenInMenu: true,
     routes: [
       {
         name: '详情一级页面',
-        path: `/${BASE_URL}/detailone`,
+        path: `/${BASE_URL}/detailOnlyOne`,
         component: '@/pages/DetailDemo/Demo1',
       },
       {
         name: '详情二级页面',
-        path: `/${BASE_URL}/demos`,
+        path: `/${BASE_URL}/secondary`,
         routes: [
           {
-            name: '详情 Demo two',
-            path: `/${BASE_URL}/demo/two`,
+            name: '详情二级1',
+            path: `/${BASE_URL}/secondary/two`,
             component: '@/pages/DetailDemo/Demo2',
           },
           {
-            name: '详情 Demo three',
-            path: `/${BASE_URL}/demo/three`,
+            name: '详情二级2',
+            path: `/${BASE_URL}/secondary/three`,
             component: '@/pages/DetailDemo/Demo3',
           },
         ],
