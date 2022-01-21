@@ -68,10 +68,16 @@ const IndexPage: FC<IProps> = (props) => {
       </Button>
       <Button
         onClick={() => {
-          history.push('/login');
+          // history.push({
+          //   pathname: '/detail1',
+          //   query: {
+          //     id: '2131231',
+          //   },
+          // });
+          history.push('/detail/detail1?id=1111111111');
         }}
       >
-        跳转Login
+        跳转detail1
       </Button>
       <Button
         onClick={() => {

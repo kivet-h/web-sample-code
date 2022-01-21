@@ -2,7 +2,7 @@
  * @Description:
  * @Author: kivet
  * @Date: 2022-01-18 17:57:06
- * @LastEditTime: 2022-01-19 14:00:05
+ * @LastEditTime: 2022-01-21 14:06:22
  */
 
 import ProLayout, { MenuDataItem } from '@ant-design/pro-layout';
@@ -18,6 +18,8 @@ interface IProps {
 const BasicLayout: React.FC<IProps> = (props) => {
   const { route } = props;
 
+  console.log('layout-route', route);
+
   // 菜单 loop
   const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
     menus.map(({ icon, children, ...item }) => ({
@@ -26,21 +28,7 @@ const BasicLayout: React.FC<IProps> = (props) => {
       children: children && loopMenuItem(children),
     }));
 
-  return (
-    <ProLayout
-      logo={img_logo}
-      menuDataRender={() => loopMenuItem(route.routes)}
-      menuItemRender={(item, dom) => <Link to={item.path ?? '/'}>{dom}</Link>}
-      title={false}
-      fixSiderbar
-      // menu={{ request: async () => loopMenuItem(route.routes) }}
-      breakpoint={false}
-      defaultCollapsed={false}
-      headerRender={() => <Header />}
-    >
-      {props.children}
-    </ProLayout>
-  );
+  return <>{props.children}</>;
 };
 
 export default BasicLayout;

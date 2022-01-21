@@ -2,6 +2,10 @@
  * @Description: 路由配置文件
  */
 
+// import detailRoutes from '@/pages/DetailDemo/routes';
+
+const detailRoutes = require('../src/pages/DetailDemo/routes');
+
 export interface RouteType {
   /** 页面 path */
   path?: string;
@@ -33,11 +37,16 @@ const route: RouteType[] = [
     icon: 'home',
     hideInMenu: true,
   },
-  { name: '首页', path: '/home', component: '@/pages/Home', icon: 'home' },
+  {
+    name: '首页',
+    path: '/home',
+    component: '@/pages/Home',
+    icon: 'icon-a-2xhome',
+  },
   {
     name: 'Demo',
     path: '/demo',
-    icon: 'setting',
+    icon: 'icon-a-2xset',
     // hideInMenu: true,
     routes: [
       {
@@ -52,6 +61,7 @@ const route: RouteType[] = [
       },
     ],
   },
+  detailRoutes,
 ];
 
 export default route;
