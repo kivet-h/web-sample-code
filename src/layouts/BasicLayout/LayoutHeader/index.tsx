@@ -1,11 +1,11 @@
 /*
- * @Description: Header 部分的内容
+ * @Description: LayoutHeader 部分的内容
  */
 
 import { FC } from 'react';
 
-const Header: FC = () => {
+const LayoutHeader: FC = () => {
   return <div style={{ backgroundColor: '#ffffff' }}>这里是Header的内容</div>;
 };
 
-export default Header;
+export default LayoutHeader;

@@ -1,45 +1,42 @@
 /*
- * @Description:
- * @Author: kivet
- * @Date: 2022-01-18 17:57:06
- * @LastEditTime: 2022-01-19 14:00:05
+ * @Description: 全局 layout
  */
 
-import ProLayout, { MenuDataItem } from '@ant-design/pro-layout';
-import { IconMap } from '@/utils/iconsMap';
-import { Link } from 'umi';
-import { img_logo } from '@/assets/images';
-import { Header } from './BasicLayout';
+import { useState } from 'react';
+import { Layout, Menu } from 'antd';
+import styles from './index.less';
 
-interface IProps {
-  route: any;
-}
+const { Header, Content, Footer, Sider } = Layout;
+
+interface IProps {}
 
 const BasicLayout: React.FC<IProps> = (props) => {
-  const { route } = props;
-
-  // 菜单 loop
-  const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
-    menus.map(({ icon, children, ...item }) => ({
-      ...item,
-      icon: icon && IconMap[icon as string],
-      children: children && loopMenuItem(children),
-    }));
+  const [collapsed, setCollapsed] = useState<boolean>(false);
 
   return (
-    <ProLayout
-      logo={img_logo}
-      menuDataRender={() => loopMenuItem(route.routes)}
-      menuItemRender={(item, dom) => <Link to={item.path ?? '/'}>{dom}</Link>}
-      title={false}
-      fixSiderbar
-      // menu={{ request: async () => loopMenuItem(route.routes) }}
-      breakpoint={false}
-      defaultCollapsed={false}
-      headerRender={() => <Header />}
-    >
-      {props.children}
-    </ProLayout>
+    <Layout className={styles.container}>
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={(collapsed) => setCollapsed(collapsed)}
+        className={styles.layout_sider}
+      >
+        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+          <Menu.Item key="1">Option 1</Menu.Item>
+          <Menu.Item key="2">Option 2</Menu.Item>
+          <Menu.SubMenu key="sub1" title="User">
+            <Menu.Item key="3">Tom</Menu.Item>
+            <Menu.Item key="4">Bill</Menu.Item>
+            <Menu.Item key="5">Alex</Menu.Item>
+          </Menu.SubMenu>
+        </Menu>
+      </Sider>
+      <Layout>
+        <Header className={styles.layout_header}>顶部内容</Header>
+        <Content className={styles.layout_content}>中间内容</Content>
+        <Footer className={styles.layout_footer}>底部内容</Footer>
+      </Layout>
+    </Layout>
   );
 };
 

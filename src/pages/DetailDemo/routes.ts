@@ -8,7 +8,7 @@ const detailRoutes = [
   {
     path: `/${BASE_URL}`,
     name: '详情 Demo',
-    hideChildrenInMenu: true,
+    component: '@/layouts',
     routes: [
       {
         name: '详情一级页面',
