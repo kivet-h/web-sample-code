@@ -2,14 +2,14 @@
  * @Description:
  * @Author: kivet
  * @Date: 2022-01-18 17:57:06
- * @LastEditTime: 2022-01-24 16:47:23
+ * @LastEditTime: 2022-01-24 17:40:28
  */
 
 import ProLayout, { MenuDataItem } from '@ant-design/pro-layout';
 import { IconMap } from '@/utils/iconsMap';
 import { Link } from 'umi';
 import { img_logo } from '@/assets/images';
-import { Header } from './BasicLayout';
+import { LayoutHeader } from './BasicLayout';
 
 interface IProps {
   route: any;
@@ -18,7 +18,7 @@ interface IProps {
 const BasicLayout: React.FC<IProps> = (props) => {
   const { route } = props;
 
-  console.log('detailMMM', route);
+  // console.log('detailMMM', route);
 
   // 菜单 loop
   const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
@@ -38,7 +38,7 @@ const BasicLayout: React.FC<IProps> = (props) => {
       // menu={{ request: async () => loopMenuItem(route.routes) }}
       breakpoint={false}
       defaultCollapsed={false}
-      headerRender={() => <Header />}
+      headerRender={() => <LayoutHeader />}
     >
       {props.children}
     </ProLayout>

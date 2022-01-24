@@ -1,3 +1,3 @@
-import Header from './Header';
+import LayoutHeader from './LayoutHeader';
 
-export { Header };
+export { LayoutHeader };

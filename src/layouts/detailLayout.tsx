@@ -6,7 +6,7 @@ import ProLayout, { MenuDataItem } from '@ant-design/pro-layout';
 import { IconMap } from '@/utils/iconsMap';
 import { Link } from 'umi';
 import { img_logo } from '@/assets/images';
-import { Header } from './BasicLayout';
+import { LayoutHeader } from './BasicLayout';
 
 interface IProps {
   route: any;
@@ -15,7 +15,7 @@ interface IProps {
 const detailLayout: React.FC<IProps> = (props) => {
   const { route } = props;
 
-  console.log('detailLLL', route);
+  // console.log('detailLLL', route);
 
   // 菜单 loop
   const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
@@ -35,7 +35,7 @@ const detailLayout: React.FC<IProps> = (props) => {
       // menu={{ request: async () => loopMenuItem(route.routes) }}
       breakpoint={false}
       defaultCollapsed={false}
-      headerRender={() => <Header />}
+      headerRender={() => <LayoutHeader />}
     >
       {props.children}
     </ProLayout>

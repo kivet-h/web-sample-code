@@ -2,7 +2,7 @@
  * @Description: 最外层路由菜单
  */
 
-import { RouteType } from './routes.config';
+import { RouteType } from '../../config/routes.config';
 
 const mainRoute: RouteType = {
   path: '/',

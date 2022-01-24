@@ -75,7 +75,7 @@ const IndexPage: FC<IProps> = (props) => {
       </Button>
       <Button
         onClick={() => {
-          history.push('/detail/detailOnlyOne');
+          history.push('/detail/detailOnlyOne?id=111111111');
         }}
       >
         跳转Detail

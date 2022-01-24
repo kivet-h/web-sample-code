@@ -1,9 +1,8 @@
 /*
  * @Description: 整合项目中所有路由配置
  */
-
-const mainRoute = require('./routes.main');
-const detailRoute = require('../src/pages/DetailDemo/routes.detail');
+const path = require('path');
+const fs = require('fs');
 
 export interface RouteType {
   /** 页面 path */
@@ -37,5 +36,39 @@ const outLayoutRoute: RouteType[] = [
   },
 ];
 
-// ? mainRoute 必须放最后，因为其里面的 [path: '/'] 能匹配所有的 path
-export default [...outLayoutRoute, detailRoute, mainRoute];
+/**
+ * 读取 pages 目录下所有页面模块的路由配置，注：路由配置文件名，必须以 routes[.***].(ts|js) 的格式命名
+ * @param dir 目录
+ * @param useSubDir 是否读取子目录
+ */
+const generateRoutes = (pagesDir: string, useSubDir: boolean) => {
+  const routeFileList: any = [];
+  // 递归读取路由配置文件
+  const readRouteFileList = (dir: string, useSubDir: boolean) => {
+    const files = fs.readdirSync(dir);
+    files.forEach((item: any) => {
+      // 生成
+      const filePath = path.join(dir, item);
+      const stat = fs.statSync(filePath);
+      // 判断是否为目录
+      if (stat.isDirectory() && useSubDir) {
+        readRouteFileList(path.join(dir, item), useSubDir);
+      } else {
+        const reg = RegExp(/routes(.*).ts|js/);
+        if (reg.test(filePath)) {
+          routeFileList.push(filePath);
+        }
+      }
+    });
+  };
+  readRouteFileList(pagesDir, useSubDir);
+  const routes = routeFileList.map((item: string) => require(item));
+  return routes;
+};
+
+/**
+ * 读取pages目录下路由文件，自动生成路由表
+ */
+const routes = generateRoutes(path.join(__dirname, '../src/pages'), true);
+
+export default [...outLayoutRoute, ...routes];
