@@ -1,8 +1,5 @@
 /*
- * @Description:
- * @Author: kivet
- * @Date: 2022-01-18 17:57:06
- * @LastEditTime: 2022-01-24 16:47:23
+ * @Description: 详情页 Layout
  */
 
 import ProLayout, { MenuDataItem } from '@ant-design/pro-layout';
@@ -15,10 +12,10 @@ interface IProps {
   route: any;
 }
 
-const BasicLayout: React.FC<IProps> = (props) => {
+const detailLayout: React.FC<IProps> = (props) => {
   const { route } = props;
 
-  console.log('detailMMM', route);
+  console.log('detailLLL', route);
 
   // 菜单 loop
   const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
@@ -45,4 +42,4 @@ const BasicLayout: React.FC<IProps> = (props) => {
   );
 };
 
-export default BasicLayout;
+export default detailLayout;

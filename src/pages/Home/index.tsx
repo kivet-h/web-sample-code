@@ -75,6 +75,13 @@ const IndexPage: FC<IProps> = (props) => {
       </Button>
       <Button
         onClick={() => {
+          history.push('/detail/detailOnlyOne');
+        }}
+      >
+        跳转Detail
+      </Button>
+      <Button
+        onClick={() => {
           console.log('==namee', DruidLocalStorage.get('name'));
         }}
       >
