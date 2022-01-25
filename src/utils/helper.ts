@@ -2,6 +2,7 @@
  * @Description: 一些帮助函数
  */
 
+import { IMenuNav } from '@/layouts';
 import { history } from 'umi';
 import { DruidLocalStorage } from './storage';
 

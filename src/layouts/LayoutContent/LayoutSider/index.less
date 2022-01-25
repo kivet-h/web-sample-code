@@ -1,0 +1,21 @@
+.container {
+  .menu_logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    height: 55px;
+    width: 100%;
+    background-color: @primary-color;
+    transition: all 0.2s;
+
+    &[data-collapsed='true'] {
+      width: 80px;
+      transition: all 0.2s;
+    }
+  }
+
+  :global(.ant-layout-sider) {
+    height: calc(100% - 55px); // ? 需减去一个 logo 的高度
+  }
+}
