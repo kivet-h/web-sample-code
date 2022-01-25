@@ -1,5 +1,6 @@
 /*
  * @Description: 全局样式在这里设置
+ * @要求!!!：添加修改新的全局样式时，要求必须写上注释，解释此样式修改的是哪个地方的样式，解决的是什么问题。
  */
 
 // ? 举个例子，统一修改项目中 antd 的按钮的样式
@@ -14,13 +15,9 @@ body {
   margin: 0;
   height: 100%;
   background-color: @bg-color;
-  /*font-family: PingFangSC-Regular, sans-serif;*/
   font-family: 'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
     'Arial', sans-serif;
-  /*font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;*/
-  /*font-family: "Microsoft YaHei";*/
   font-size: @font-size-base;
-  font-weight: 400;
 }
 
 #root {
@@ -32,6 +29,7 @@ body {
   //   }
   // }
 
+  // ? layout 页面，content 容器，清除外边距，设计页面时其子容器自定义边距
   .ant-pro-basicLayout-content {
     margin: 0;
   }

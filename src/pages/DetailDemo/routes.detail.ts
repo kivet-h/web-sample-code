@@ -2,11 +2,9 @@
  * @Description: 详情页 route 配置
  */
 
-import { RouteType } from 'config/routes.config';
-
 const BASE_URL = 'detail';
 
-const detailRoute: RouteType = {
+const detailRoute = {
   path: `/${BASE_URL}`,
   component: '@/layouts/detailLayout',
   routes: [

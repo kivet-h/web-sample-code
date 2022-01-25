@@ -2,9 +2,7 @@
  * @Description: 最外层路由菜单
  */
 
-import { RouteType } from '../../config/routes.config';
-
-const mainRoute: RouteType = {
+const mainRoute = {
   path: '/',
   component: '@/layouts',
   routes: [
