@@ -27,6 +27,11 @@ const detailRoute = {
           path: `/${BASE_URL}/secondary/three`,
           component: '@/pages/DetailDemo/Demo3',
         },
+        {
+          name: '详情二级3',
+          path: `/${BASE_URL}/secondary/four`,
+          component: '@/pages/DetailDemo/Demo4',
+        },
       ],
     },
     {

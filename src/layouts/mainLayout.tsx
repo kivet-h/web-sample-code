@@ -22,10 +22,10 @@ const BasicLayout: React.FC<IProps> = (props) => {
 
   // 菜单 loop
   const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
-    menus.map(({ icon, children, ...item }) => ({
+    menus.map(({ icon, routes, ...item }) => ({
       ...item,
       icon: icon && IconMap[icon as string],
-      children: children && loopMenuItem(children),
+      routes: routes && loopMenuItem(routes),
     }));
 
   return (
