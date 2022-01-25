@@ -3,13 +3,15 @@
  */
 
 import ProLayout, { MenuDataItem } from '@ant-design/pro-layout';
-import { IconMap } from '@/utils/iconsMap';
 import { Link } from 'umi';
 import { img_logo } from '@/assets/images';
 import { LayoutHeader } from './BasicLayout';
 
 interface IProps {
-  route: any;
+  route: {
+    routes: MenuDataItem[];
+    [index: string]: any;
+  };
 }
 
 const detailLayout: React.FC<IProps> = (props) => {
@@ -21,7 +23,6 @@ const detailLayout: React.FC<IProps> = (props) => {
   const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
     menus.map(({ icon, children, ...item }) => ({
       ...item,
-      icon: icon && IconMap[icon as string],
       children: children && loopMenuItem(children),
     }));
 

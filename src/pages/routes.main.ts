@@ -4,7 +4,7 @@
 
 const mainRoute = {
   path: '/',
-  component: '@/layouts',
+  component: '@/layouts/mainLayout',
   routes: [
     {
       path: '/',

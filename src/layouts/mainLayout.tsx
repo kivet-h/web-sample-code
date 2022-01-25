@@ -1,8 +1,5 @@
 /*
- * @Description:
- * @Author: kivet
- * @Date: 2022-01-18 17:57:06
- * @LastEditTime: 2022-01-24 17:40:28
+ * @Description: 最外层 layout
  */
 
 import ProLayout, { MenuDataItem } from '@ant-design/pro-layout';
@@ -12,7 +9,10 @@ import { img_logo } from '@/assets/images';
 import { LayoutHeader } from './BasicLayout';
 
 interface IProps {
-  route: any;
+  route: {
+    routes: MenuDataItem[];
+    [index: string]: any;
+  };
 }
 
 const BasicLayout: React.FC<IProps> = (props) => {
