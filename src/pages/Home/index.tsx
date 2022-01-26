@@ -2,19 +2,14 @@
  * @Description: 首页
  * @Author: kivet
  * @Date: 2022-01-25 15:55:00
- * @LastEditTime: 2022-01-26 10:33:23
+ * @LastEditTime: 2022-01-26 15:04:48
  */
 
 import { FC, useEffect, useState } from 'react';
 import { Button, Input } from 'antd';
 import _ from 'lodash';
-import {
-  connect,
-  Dispatch,
-  IGlobalModelState,
-  Loading,
-  ConnectProps,
-} from 'umi';
+import { Dispatch, IGlobalModelState, Loading, ConnectProps } from 'umi';
+import { connect } from 'umi';
 import { DruidLocalStorage } from '@/utils/storage';
 import styles from './index.less';
 
@@ -25,10 +20,12 @@ interface IProps extends ConnectProps {
 }
 
 const IndexPage: FC<IProps> = (props) => {
-  const { dispatch, history, global, loading = false } = props;
+  const { dispatch, history, global } = props;
   const [value, setValue] = useState<string>('');
 
   useEffect(() => {
+    const a = "sda"
+
     dispatch({
       type: 'global/getDeviceList',
     });
@@ -113,10 +110,8 @@ const IndexPage: FC<IProps> = (props) => {
   );
 };
 
-export default connect(
-  ({ global, loading }: { global: IGlobalModelState; loading: Loading }) => ({
-    global,
-    // loading: loading.effects['global/getDeviceList'],
-    loading: loading.models.global,
-  }),
-)(IndexPage);
+export default connect(({ global, loading }: { global: IGlobalModelState; loading: Loading }) => ({
+  global,
+  // loading: loading.effects['global/getDeviceList'],
+  loading: loading.models.global,
+}))(IndexPage);
