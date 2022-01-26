@@ -1,12 +1,12 @@
 /*
  * @Description: DetailDemo1
  */
-import { FC } from 'react';
+import type { FC } from 'react';
 import { useLocation } from 'umi';
 
 interface IProps {}
 
-const DetailDemo1: FC<IProps> = (props) => {
+const DetailDemo1: FC<IProps> = () => {
   const {
     query: { id = '' },
   }: any = useLocation();

@@ -1,11 +1,11 @@
 /*
  * @Description: Demo
  */
-import React, { FC } from 'react';
+import type { FC } from 'react';
 
 interface IProps {}
 
-const Demo: FC<IProps> = (props) => {
+const Demo: FC<IProps> = () => {
   return <div>Demo</div>;
 };
 

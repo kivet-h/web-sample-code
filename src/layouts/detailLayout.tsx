@@ -2,10 +2,11 @@
  * @Description: 详情页 Layout
  * @Author: kivet
  * @Date: 2022-01-25 15:55:00
- * @LastEditTime: 2022-01-26 10:31:47
+ * @LastEditTime: 2022-01-26 17:13:53
  */
 
-import ProLayout, { MenuDataItem } from '@ant-design/pro-layout';
+import type { MenuDataItem } from '@ant-design/pro-layout';
+import ProLayout from '@ant-design/pro-layout';
 import { Link } from 'umi';
 import { img_logo } from '@/assets/images';
 import { LayoutHeader } from './BasicLayout';
@@ -24,7 +25,7 @@ const detailLayout: React.FC<IProps> = (props) => {
 
   // 菜单 loop
   const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
-    menus.map(({ icon, routes, ...item }) => ({
+    menus.map(({ routes, ...item }) => ({
       ...item,
       routes: routes && loopMenuItem(routes),
     }));

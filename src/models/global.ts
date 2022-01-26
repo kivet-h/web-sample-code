@@ -2,9 +2,9 @@
  * @Description: global 模块 models 层
  * @Author: kivet
  * @Date: 2022-01-13 17:21:33
- * @LastEditTime: 2022-01-26 10:32:21
+ * @LastEditTime: 2022-01-26 17:14:29
  */
-import { Effect, ImmerReducer, Subscription } from 'umi';
+import type { Effect, ImmerReducer, Subscription } from 'umi';
 import { getDeviceList } from '@/services/global';
 import { DruidLocalStorage } from '@/utils/storage';
 import { StorageEnum } from '@/utils/enum';
@@ -54,10 +54,7 @@ const GlobalModel: IGlobalModelType = {
   subscriptions: {
     setup({ history }) {
       history.listen(({ pathname }) => {
-        if (
-          pathname !== '/login' &&
-          !DruidLocalStorage.get(StorageEnum.TOKEN)
-        ) {
+        if (pathname !== '/login' && !DruidLocalStorage.get(StorageEnum.TOKEN)) {
           // Helper.handleRedirect(); // ? 没有登录功能，暂时屏蔽不重定向
         }
       });

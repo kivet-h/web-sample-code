@@ -2,7 +2,7 @@
  * @Description: 项目中所有公共使用的枚举都放这里
  * @Author: kivet
  * @Date: 2022-01-13 16:37:50
- * @LastEditTime: 2022-01-26 10:34:49
+ * @LastEditTime: 2022-01-26 17:28:19
  */
 
 /**

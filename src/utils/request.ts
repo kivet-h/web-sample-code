@@ -61,62 +61,54 @@ const request = extend({
 /**
  * 全局请求拦截器
  */
-request.interceptors.request.use(
-  (tempUrl: string, tempOptions: RequestParams) => {
-    const { method = 'post', data: params = {}, headers = {} } = tempOptions;
+request.interceptors.request.use((tempUrl: string, tempOptions: RequestParams) => {
+  const { method = 'post', data: params = {}, headers = {} } = tempOptions;
 
-    const { showOriginData = false, skipError = false, ...realData } = params;
-    isShowOriginResponse = showOriginData;
-    isSkipError = skipError;
+  const { showOriginData = false, skipError = false, ...realData } = params;
+  isShowOriginResponse = showOriginData;
+  isSkipError = skipError;
 
-    // ? 处理请求地址，如果请求地址带协议则不拼接API_BASE参数
-    let url = `${API_BASE}${tempUrl}`;
+  // ? 处理请求地址，如果请求地址带协议则不拼接API_BASE参数
+  let url = `${API_BASE}${tempUrl}`;
 
-    if (tempUrl.includes('http')) {
-      url = tempUrl;
-    }
+  if (tempUrl.includes('http')) {
+    url = tempUrl;
+  }
 
-    // ? git 请求时，可能会有额外的参数拼接到 URL 地址后面
-    if (method === 'get') {
-      const stringified = params ? `?${queryString.stringify(params)}` : '';
-      url += `${stringified}`;
-    }
+  // ? git 请求时，可能会有额外的参数拼接到 URL 地址后面
+  if (method === 'get') {
+    const stringified = params ? `?${queryString.stringify(params)}` : '';
+    url += `${stringified}`;
+  }
 
-    // 移除没必要传递给服务器的参数
-    // const { showOriginData = false, skipError = false, ...realData } =
-    //   (method === 'get' ? tempOptions.params : tempOptions.data) || {};
+  // 移除没必要传递给服务器的参数
+  // const { showOriginData = false, skipError = false, ...realData } =
+  //   (method === 'get' ? tempOptions.params : tempOptions.data) || {};
 
-    // 组装请求参数，移除空值
-    const data = {
-      // ...Helper.handleNullData(defaultParams),
-      ...Helper.handleNullData(realData),
-    };
+  // 组装请求参数，移除空值
+  const data = {
+    // ...Helper.handleNullData(defaultParams),
+    ...Helper.handleNullData(realData),
+  };
 
-    // 组装请求配置
-    const options = {
-      // ...tempOptions,
-      data,
-      headers: {
-        'x-druid-authentication':
-          DruidLocalStorage.get(StorageEnum.TOKEN) || '',
-        ...headers,
-      },
-    };
+  // 组装请求配置
+  const options = {
+    // ...tempOptions,
+    data,
+    headers: {
+      'x-druid-authentication': DruidLocalStorage.get(StorageEnum.TOKEN) || '',
+      ...headers,
+    },
+  };
 
-    return { url, options };
-  },
-);
+  return { url, options };
+});
 
 // 全局响应拦截器，克隆响应对象做解析处理
 request.interceptors.response.use(async (originResponse, options) => {
+  console.log('options', options);
   const response = await originResponse.clone().json();
-  const {
-    data = '',
-    code = '',
-    errCode = '',
-    msg = '',
-    message: msgTwo = '',
-  } = response;
+  const { data = '', code = '', errCode = '', msg = '', message: msgTwo = '' } = response;
 
   if (errCode === '401') {
     Helper.handleRedirect();

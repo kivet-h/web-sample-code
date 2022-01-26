@@ -13,6 +13,8 @@
     "build:prod": "cross-env UMI_ENV=prod umi build",
     "serve": "serve ./dist",
     "commit": "rm -rf .git/hooks/pre-commit && git add . && git-cz",
+    "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
+    "lint:fix:js": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",

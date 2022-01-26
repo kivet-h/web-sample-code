@@ -2,10 +2,11 @@
  * @Description: 最外层 layout
  * @Author: kivet
  * @Date: 2022-01-25 15:55:00
- * @LastEditTime: 2022-01-26 13:54:16
+ * @LastEditTime: 2022-01-26 17:13:46
  */
 
-import ProLayout, { MenuDataItem } from '@ant-design/pro-layout';
+import type { MenuDataItem } from '@ant-design/pro-layout';
+import ProLayout from '@ant-design/pro-layout';
 import { IconMap } from '@/utils/iconsMap';
 import { Link } from 'umi';
 import { img_logo } from '@/assets/images';

@@ -3,7 +3,7 @@
  * @ 规则依赖于 @umijs/fabric，在此基础上，可自行添加自己的规则进行配置
  * @Author: kivet
  * @Date: 2022-01-26 13:55:14
- * @LastEditTime: 2022-01-26 17:09:09
+ * @LastEditTime: 2022-01-26 17:31:59
  */
 
 module.exports = {
@@ -35,15 +35,13 @@ module.exports = {
     // ? 禁止代码行结束后面有多余空格
     'no-trailing-spaces': 2,
     // ? 禁止多余空行
-    'no-multiple-empty-lines': ['error', { 'max': 1, 'maxBOF': 1, 'maxEOF': 1 }],
+    'no-multiple-empty-lines': ['error', { max: 1, maxBOF: 1, maxEOF: 1 }],
     // ? 允许标识符中使用悬空下划线（标识符的开头或末尾的下划线）
     'no-underscore-dangle': 0,
-    // ? 禁止未使用的变量
-    'no-unused-vars': 2,
-    '@typescript-eslint/no-unused-vars': 2,
+    // ? 允许未使用的变量（这里允许，使用ts提供的@typescript-eslint/no-unused-vars来禁用，才能覆盖ts的一些规则，如只有ts才有的枚举，这里就会检验处理并报错）
+    'no-unused-vars': 0,
     // ? 允许逻辑短路、三元运算符等表达式求值
     'no-unused-expressions': 0,
-    '@typescript-eslint/no-unused-expressions': 0,
     // ? 禁止使用嵌套的三元表达式
     'no-nested-ternary': 2,
     // ? 禁止对函数参数再赋值(保证react函数式编程纯函数的概念)
@@ -74,8 +72,14 @@ module.exports = {
 
     // ? 关闭此规则，允许 useEffect 的依赖为空数组
     'react-hooks/exhaustive-deps': 0,
+
+    // ? 允许逻辑短路、三元运算符等表达式求值
+    '@typescript-eslint/no-unused-expressions': 0,
+    // ? 禁止未使用的变量
+    '@typescript-eslint/no-unused-vars': ['error'],
     // ? 禁用使用在前，保证 useEffct 使用在最前面，这时候里面如果使用了外部的函数就会报这错
     '@typescript-eslint/no-use-before-define': 0,
-
+    // ? 允许空的 ts 接口定义  eg: interface IProps {}
+    '@typescript-eslint/no-empty-interface': 0,
   },
 };

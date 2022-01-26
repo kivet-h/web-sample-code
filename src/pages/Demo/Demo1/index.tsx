@@ -1,12 +1,12 @@
 /*
  * @Description: Demo1
  */
-import { FC } from 'react';
+import type { FC } from 'react';
 import styles from './index.less';
 
 interface IProps {}
 
-const Demo1: FC<IProps> = (props) => {
+const Demo1: FC<IProps> = () => {
   return <div className={styles.container}>Demo1</div>;
 };
 

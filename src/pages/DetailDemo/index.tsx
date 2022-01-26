@@ -1,12 +1,12 @@
 /*
- * @Description: DetailDemo
+ * @Description: DetailDemo4
  */
-import React, { FC } from 'react';
+import type { FC } from 'react';
 
 interface IProps {}
 
-const DetailDemo: FC<IProps> = (props) => {
-  return <div>DetailDemo</div>;
+const DetailDemo4: FC<IProps> = () => {
+  return <div>DetailDemo4</div>;
 };
 
-export default DetailDemo;
+export default DetailDemo4;

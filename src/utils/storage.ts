@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-for-in-array */
+/* eslint-disable no-param-reassign */
 /*
  * @Description: 封装私有的本地缓存
  * @Author: kivet
  * @Date: 2022-01-10 14:08:51
- * @LastEditTime: 2022-01-26 10:36:45
+ * @LastEditTime: 2022-01-26 17:41:08
  */
 
 interface IOptions {
@@ -35,8 +37,7 @@ const drivers = {
  * 获取数据类型
  * @param value
  */
-const getType = (value: any) =>
-  Object.prototype.toString.call(value).slice(8, -1);
+const getType = (value: any) => Object.prototype.toString.call(value).slice(8, -1);
 
 class SQ_Storage {
   private defaults: {
@@ -154,9 +155,7 @@ class SQ_Storage {
    * @returns 若传入时有配置过，配置信息与默认配置合并，返回合并后的配置
    */
   private _getOptions = (options?: IOptions) =>
-    options
-      ? (Object as any).assign({}, this.defaults, options)
-      : this.defaults;
+    options ? (Object as any).assign({}, this.defaults, options) : this.defaults;
 
   /**
    * 从配置中获取当前缓存类型
@@ -173,9 +172,7 @@ class SQ_Storage {
         ? drivers.LOCALSTORAGE
         : drivers.SESSIONSTORAGE;
     }
-    throw new Error(
-      'storeType only support [ls/local/localStorage/ss/session/sessionStorage]!',
-    );
+    throw new Error('storeType only support [ls/local/localStorage/ss/session/sessionStorage]!');
   };
 
   /**
@@ -185,9 +182,7 @@ class SQ_Storage {
    * @returns 传入了 options 的配置，且 options.prefix 设置了的，使用 options.prefix 进行拼接，否则使用默认前缀名称进行拼接
    */
   private _getKey = (key: string, options?: IOptions) => {
-    return options && options.prefix
-      ? `${options.prefix}${key}`
-      : `${this.defaults.prefix}${key}`;
+    return options && options.prefix ? `${options.prefix}${key}` : `${this.defaults.prefix}${key}`;
   };
 
   /**
@@ -213,8 +208,7 @@ class SQ_Storage {
    * 以下是对所有保存的缓存数据进行一个数据类型的汇总储存，用于对当前不同类型的缓存数据进行处理
    */
   private _bucket = (options?: any) => {
-    let bucket: any;
-    bucket = this._getDriver(options).getItem(options.bucket);
+    const bucket = this._getDriver(options).getItem(options.bucket);
     return bucket ? JSON.parse(bucket) : {};
   };
 
