@@ -1,5 +1,8 @@
 /*
  * @Description: 详情页 Layout
+ * @Author: kivet
+ * @Date: 2022-01-25 15:55:00
+ * @LastEditTime: 2022-01-26 10:31:47
  */
 
 import ProLayout, { MenuDataItem } from '@ant-design/pro-layout';

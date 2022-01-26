@@ -1,5 +1,8 @@
 /*
  * @Description: 公共 request 拦截器
+ * @Author: kivet
+ * @Date: 2022-01-10 13:19:33
+ * @LastEditTime: 2022-01-26 10:36:27
  */
 
 import { extend } from 'umi-request';

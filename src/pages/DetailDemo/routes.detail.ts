@@ -1,5 +1,8 @@
 /*
  * @Description: 详情页 route 配置
+ * @Author: kivet
+ * @Date: 2022-01-25 15:55:00
+ * @LastEditTime: 2022-01-26 10:33:57
  */
 
 const BASE_URL = 'detail';

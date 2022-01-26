@@ -1,6 +1,10 @@
 /*
  * @Description: 项目的公共配置
+ * @Author: kivet
+ * @Date: 2022-01-25 15:55:00
+ * @LastEditTime: 2022-01-26 10:28:00
  */
+
 import { defineConfig } from 'umi';
 import theme from './theme.config';
 import routes from './routes.config';

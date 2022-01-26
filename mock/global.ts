@@ -1,5 +1,8 @@
 /*
- * @Description: 公共模块 mock
+ * @Description: global 模块数据 mock
+ * @Author: kivet
+ * @Date: 2022-01-13 17:17:16
+ * @LastEditTime: 2022-01-26 10:28:40
  */
 
 import Mock from 'mockjs';

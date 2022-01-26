@@ -1,5 +1,8 @@
 /*
- * @Description: 本地缓存
+ * @Description: 封装私有的本地缓存
+ * @Author: kivet
+ * @Date: 2022-01-10 14:08:51
+ * @LastEditTime: 2022-01-26 10:36:45
  */
 
 interface IOptions {

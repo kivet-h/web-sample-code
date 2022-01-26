@@ -1,3 +1,9 @@
+/*
+ * @Description: global 模块 models 层
+ * @Author: kivet
+ * @Date: 2022-01-13 17:21:33
+ * @LastEditTime: 2022-01-26 10:32:21
+ */
 import { Effect, ImmerReducer, Subscription } from 'umi';
 import { getDeviceList } from '@/services/global';
 import { DruidLocalStorage } from '@/utils/storage';

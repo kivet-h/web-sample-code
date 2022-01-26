@@ -1,6 +1,10 @@
 /*
  * @Description: 整合项目中所有路由配置
+ * @Author: kivet
+ * @Date: 2022-01-25 15:55:00
+ * @LastEditTime: 2022-01-26 10:28:14
  */
+
 const path = require('path');
 const fs = require('fs');
 

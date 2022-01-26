@@ -1,5 +1,8 @@
 /*
  * @Description: 一些帮助函数
+ * @Author: kivet
+ * @Date: 2022-01-25 15:55:00
+ * @LastEditTime: 2022-01-26 10:36:01
  */
 
 import { history } from 'umi';
