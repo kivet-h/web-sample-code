@@ -15,8 +15,11 @@
     "commit": "rm -rf .git/hooks/pre-commit && git add . && git-cz",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
     "lint:fix:js": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
-    "postinstall": "umi generate tmp",
+    "lint:style": "stylelint \"src/**/*.less\" --syntax less",
+    "lint:fix:style": "stylelint --fix \"src/**/*.less\" --syntax less",
+    "lint:fix": "npm run lint:fix:js && npm run lint:fix:style",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "postinstall": "umi generate tmp",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage"
   },
