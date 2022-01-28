@@ -2,7 +2,7 @@
  * @Description: 首页
  * @Author: kivet
  * @Date: 2022-01-25 15:55:00
- * @LastEditTime: 2022-01-26 17:10:01
+ * @LastEditTime: 2022-01-28 10:52:54
  */
 
 import type { FC } from 'react';
@@ -33,10 +33,7 @@ const IndexPage: FC<IProps> = (props) => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Page index === {APP_ENV}</h1>
-      <Input
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
+      <Input value={value} onChange={(e) => setValue(e.target.value)} />
       <Button
         onClick={() => {
           console.log('== value ===', value);
@@ -103,10 +100,9 @@ const IndexPage: FC<IProps> = (props) => {
       >
         获取arr
       </Button>
-      <Button
-        type="primary"
-        disabled
-      >asda</Button>
+      <Button type="primary" disabled>
+        asda
+      </Button>
       <div>
         {_.map(global.deviceList, (item: any) => (
           <div key={item.id}>{item.name}</div>
