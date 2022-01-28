@@ -2,7 +2,7 @@
  * @Description: 首页
  * @Author: kivet
  * @Date: 2022-01-25 15:55:00
- * @LastEditTime: 2022-01-28 10:52:54
+ * @LastEditTime: 2022-01-28 14:15:34
  */
 
 import type { FC } from 'react';
@@ -48,7 +48,7 @@ const IndexPage: FC<IProps> = (props) => {
             name: 'kivet',
             address: '成都',
           };
-          DruidLocalStorage.set('obj', mockObj);
+          DruidLocalStorage.set('myself', mockObj);
         }}
       >
         存储一个对象

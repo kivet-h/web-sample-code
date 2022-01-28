@@ -4,7 +4,7 @@
  * @Description: 封装私有的本地缓存
  * @Author: kivet
  * @Date: 2022-01-10 14:08:51
- * @LastEditTime: 2022-01-26 17:41:08
+ * @LastEditTime: 2022-01-28 14:18:40
  */
 
 interface IOptions {
@@ -22,7 +22,7 @@ interface IOptions {
 const defaultOptions = {
   bucket: 'storage',
   deiver: 'localStorage',
-  prefix: 'shequ_',
+  prefix: 'druid_',
 };
 
 /**
@@ -39,7 +39,7 @@ const drivers = {
  */
 const getType = (value: any) => Object.prototype.toString.call(value).slice(8, -1);
 
-class SQ_Storage {
+class Druid_Storage {
   private defaults: {
     bucket: string;
     driver: string;
@@ -235,10 +235,10 @@ class SQ_Storage {
   };
 }
 
-const DruidLocalStorage = new SQ_Storage({ bucket: 'Storage_sq' });
-const DruidSessionStorage = new SQ_Storage({
-  bucket: 'Storage_sq',
+const DruidLocalStorage = new Druid_Storage({ bucket: 'Storage_druid' });
+const DruidSessionStorage = new Druid_Storage({
+  bucket: 'Storage_druid',
   driver: 'sessionStorage',
 });
 
-export { SQ_Storage, DruidLocalStorage, DruidSessionStorage };
+export { Druid_Storage, DruidLocalStorage, DruidSessionStorage };
