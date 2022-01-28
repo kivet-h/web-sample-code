@@ -12,7 +12,7 @@
     "build": "cross-env UMI_ENV=dev umi build",
     "build:prod": "cross-env UMI_ENV=prod umi build",
     "serve": "serve ./dist",
-    "commit": "rm -rf .git/hooks/pre-commit && git add . && git-cz",
+    "commit": "npm run lint:fix && rm -rf .git/hooks/pre-commit && git add . && git-cz",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
     "lint:fix:js": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
