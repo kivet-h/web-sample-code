@@ -7,6 +7,7 @@ interface IProps {
 }
 
 const BasicLayout: React.FC<IProps> = (props) => {
+  console.log('==props', props);
   return <>{props.children}</>;
 };
 

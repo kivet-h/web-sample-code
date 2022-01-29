@@ -3,6 +3,7 @@
  */
 import { defineConfig } from 'umi';
 import routes from './routes';
+// import routes from './routes.config';
 import theme from './theme.config';
 
 export default defineConfig({
